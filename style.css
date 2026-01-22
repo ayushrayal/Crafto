@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: monospace;
 }
 
 html, body {
@@ -12,9 +13,174 @@ html, body {
 main {
   height: 100vh;
   width: 100%;
-  background: linear-gradient(90deg, #020962, #010226);
+  background: linear-gradient(90deg, #070a24, #000233);
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
   gap: 20px;
   padding: 30px;
+}
+
+main > div {
+  background: #0b0f1a;
+  border-radius: 16px;
+  color: white;
+  padding: 10px;
+}
+
+#left-container {
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100%;
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#left-container #ShapeBox {
+  height: 50%;
+  width: 100%;
+  background-color: #0B0F1A;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+#left-container #ShapeBox button {
+  padding: 20px;
+  background-color: transparent;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 2px solid #ffffff;
+  transition: all 0.3s ease;
+}
+#left-container #ShapeBox button:active {
+  scale: 0.9;
+}
+#left-container #TextBox {
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100%;
+  background-color: #0B0F1A;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+#left-container #TextBox button {
+  padding: 20px;
+  background-color: transparent;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 2px solid #ffffff;
+  transition: all 0.3s ease;
+}
+#left-container #TextBox button:active {
+  scale: 0.9;
+}
+
+#Center {
+  height: 100%;
+  width: 100%;
+  background-color: #000000;
+  position: relative;
+  overflow: hidden;
+}
+
+#right {
+  height: 100%;
+  width: 100%;
+  background-color: #000000;
+}
+#right #properties {
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100%;
+  background-color: #0b0f1a;
+  padding: 15px;
+  border-radius: 10px;
+}
+#right #properties label {
+  font-size: 20px;
+  font-weight: 700;
+}
+#right #properties .inner {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 5px;
+}
+#right #properties .inner button {
+  padding: 5px;
+  background-color: transparent;
+  border: 2px white solid;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 15px;
+}
+#right #properties .inner input {
+  padding: 5px;
+  background-color: transparent;
+  border: 2px white solid;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 15px;
+}
+#right #properties .innerclr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  gap: 5px;
+}
+#right #properties .innerclr input {
+  padding: 5px;
+  background-color: transparent;
+  border: 2px white solid;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.rectangle {
+  height: 50px;
+  width: 100px;
+  background-color: red;
+  margin-left: 10px;
+}
+
+.square {
+  height: 50px;
+  width: 50px;
+  background-color: red;
+}
+
+.circle {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.triangle {
+  height: 50px;
+  width: 100px;
+  background-color: red;
+}
+
+.selected {
+  outline: 2px solid #ffd400;
 }/*# sourceMappingURL=style.css.map */

@@ -1,15 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Crafto</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <main>
-
+      <div id="left-container">
+        <div id="ShapeBox">
+          <button id="Reactangle">Rectangle</button>
+          <button id="Square">Square</button>
+          <button id="Circle">Circle</button>
+          <button id="Triangle">Triangle</button>
+        </div>
+        <div id="TextBox">
+          <button>Heading</button>
+          <button>Sub-Heading</button>
+          <button>ParaGraph</button>
+        </div>
+      </div>
+      <div id="Center"></div>
+      <div id="right">
+        <div id="properties">
+          <div id="hight">
+            <label>Height</label>
+            <div class="inner">
+              <button>+</button>
+              <input type="number" value="50" />
+              <button>-</button>
+            </div>
+          </div>
+          <div id="width">
+            <label>Width</label>
+            <div class="inner">
+              <button>+</button>
+              <input type="number" value="50" />
+              <button>-</button>
+            </div>
+          </div>
+          <div id="color">
+            <label>color</label>
+            <div class="innerclr">
+              <input type="color">
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
