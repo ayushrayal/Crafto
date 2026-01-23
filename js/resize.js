@@ -15,7 +15,7 @@ function hasElement() {
 widthPlus.addEventListener("click", () => {
   const el = getSelected();
   if (!el) return;
-
+  widthInput.value = el.offsetWidth + 10;
   el.style.width = el.offsetWidth + 10 + "px";
 });
 
@@ -24,6 +24,7 @@ widthMinus.addEventListener("click", () => {
   const el = getSelected();
   if (!el) return;
   if (el.offsetWidth <= 5) return;
+  widthInput.value = el.offsetWidth - 10;
   el.style.width = el.offsetWidth - 10 + "px";
 });
 
@@ -31,7 +32,7 @@ widthMinus.addEventListener("click", () => {
 heightPlus.addEventListener("click", () => {
   const el = getSelected();
   if (!el) return;
- 
+  heightInput.value = el.offsetHeight + 10;
   el.style.height = el.offsetHeight + 10 + "px";
 });
 
@@ -40,7 +41,7 @@ heightMinus.addEventListener("click", () => {
   const el = getSelected();
   if (!el) return;
   if (el.offsetHeight <= 5) return;
-
+heightInput.value = el.offsetHeight - 10;
   el.style.height = el.offsetHeight - 10 + "px";
 });
 
