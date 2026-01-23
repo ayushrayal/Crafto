@@ -11,6 +11,10 @@ body {
   width: 100%;
 }
 
+body {
+  overflow: hidden;
+}
+
 main {
   height: 100vh;
   width: 100%;
@@ -19,6 +23,7 @@ main {
   grid-template-columns: 1fr 4fr 1fr;
   gap: 20px;
   padding: 30px;
+  overflow: hidden;
 }
 
 main > div {
@@ -57,7 +62,7 @@ main > div {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   padding: 10px;
 }
 #left-container #ShapeBox button {
@@ -82,7 +87,7 @@ main > div {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   padding: 10px;
 }
 #left-container #TextBox button {
@@ -169,7 +174,7 @@ main > div {
   color: #ffffff;
   font-size: 15px;
 }
-#right #Delete, #right #download, #right #imageUpload {
+#right #Delete, #right #imageUpload {
   margin-top: 20px;
   padding: 15px;
   width: 100%;
@@ -182,7 +187,7 @@ main > div {
   text-transform: uppercase;
   transition: all 0.3s ease;
 }
-#right #Delete:active, #right #download:active, #right #imageUpload:active {
+#right #Delete:active, #right #imageUpload:active {
   scale: 0.9;
 }
 
@@ -269,4 +274,42 @@ main > div {
   width: 200px;
   height: auto;
   cursor: move;
+}
+
+#layers h3 {
+  margin: 5px;
+}
+
+#layers {
+  max-height: 220px;
+  display: flex;
+  flex-direction: column;
+}
+
+#layerList {
+  flex: 1;
+  overflow-y: auto;
+}
+
+#layerList li {
+  padding: 6px;
+  margin-bottom: 5px;
+  background: #000;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.layerBtns {
+  margin-top: 10px;
+  flex-shrink: 0;
+}
+
+.layerBtns button {
+  flex: 1;
+  background-color: #151515;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
 }/*# sourceMappingURL=style.css.map */

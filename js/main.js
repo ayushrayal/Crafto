@@ -5,6 +5,8 @@ import "./color.js";
 import "./delete.js";
 import "./font.js";
 import "./image.js";
+import "./layers.js";
+import "./download.js";
 
 import { createRectangle } from "./shapes/rectangle.js";
 import { createSquare } from "./shapes/square.js";
