@@ -1,8 +1,10 @@
-import { selectedElement } from "./state.js";
+import { getSelected } from "./state.js";
 
-const colorInput = document.querySelector("#color input");
+const colorInput = document.getElementById("colorInput");
 
 colorInput.addEventListener("input", () => {
-  if (!selectedElement) return;
-  selectedElement.style.backgroundColor = colorInput.value;
+  const el = getSelected();
+  if (!el) return;
+
+  el.style.backgroundColor = colorInput.value;
 });

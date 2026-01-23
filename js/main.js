@@ -1,13 +1,13 @@
-// main.js
-import { createRectangle } from "./shapes/rectangle.js";
-import { clearSelection } from "./state.js";
+import "./select.js";   
+import "./drag.js";
 import "./resize.js";
 import "./color.js";
-import "./drag.js";
+import "./delete.js";
 
+import { createRectangle } from "./shapes/rectangle.js";
 
-document.querySelector("#Rectangle")
-  .addEventListener("click", createRectangle);
+const rectangleBtn = document.getElementById("Rectangle");
 
-document.querySelector("#Center")
-  .addEventListener("mousedown", clearSelection);
+rectangleBtn.addEventListener("click", () => {
+  createRectangle();
+});

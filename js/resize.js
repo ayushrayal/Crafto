@@ -1,43 +1,39 @@
-import { selectedElement } from "./state.js";
+import { getSelected } from "./state.js";
 
-// WIDTH
-const widthBox = document.querySelector("#width");
-const wPlus = widthBox.querySelector("button:first-child");
-const wMinus = widthBox.querySelector("button:last-child");
+// buttons
+const widthPlus = document.getElementById("widthplus");
+const widthMinus = document.getElementById("widthminus");
+const heightPlus = document.getElementById("heightplus");
+const heightMinus = document.getElementById("heightminus");
 
-// HEIGHT
-const heightBox = document.querySelector("#hight");
-const hPlus = heightBox.querySelector("button:first-child");
-const hMinus = heightBox.querySelector("button:last-child");
+// WIDTH +
+widthPlus.addEventListener("click", () => {
+  const el = getSelected();
+  if (!el) return;
 
-// Width +
-wPlus.addEventListener("click", () => {
-  if (!selectedElement) return;
-  selectedElement.style.width =
-    selectedElement.offsetWidth + 5 + "px";
+  el.style.width = el.offsetWidth + 10 + "px";
 });
 
-// Width -
-wMinus.addEventListener("click", () => {
-  if (!selectedElement) return;
-  if (selectedElement.offsetWidth > 20) {
-    selectedElement.style.width =
-      selectedElement.offsetWidth - 5 + "px";
-  }
+// WIDTH -
+widthMinus.addEventListener("click", () => {
+  const el = getSelected();
+  if (!el) return;
+
+  el.style.width = el.offsetWidth - 10 + "px";
 });
 
-// Height +
-hPlus.addEventListener("click", () => {
-  if (!selectedElement) return;
-  selectedElement.style.height =
-    selectedElement.offsetHeight + 5 + "px";
+// HEIGHT +
+heightPlus.addEventListener("click", () => {
+  const el = getSelected();
+  if (!el) return;
+
+  el.style.height = el.offsetHeight + 10 + "px";
 });
 
-// Height -
-hMinus.addEventListener("click", () => {
-  if (!selectedElement) return;
-  if (selectedElement.offsetHeight > 20) {
-    selectedElement.style.height =
-      selectedElement.offsetHeight - 5 + "px";
-  }
+// HEIGHT -
+heightMinus.addEventListener("click", () => {
+  const el = getSelected();
+  if (!el) return;
+
+  el.style.height = el.offsetHeight - 10 + "px";
 });

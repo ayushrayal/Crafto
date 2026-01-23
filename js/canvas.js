@@ -1,2 +1,4 @@
 // canvas.js
-export const center = document.querySelector("#Center");
+const center = document.getElementById("Center");
+
+export { center };

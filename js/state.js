@@ -1,17 +1,26 @@
-// state.js
-export let selectedElement = null;
+let selected = null;
 
-export function setSelected(el) {
-  if (selectedElement) {
-    selectedElement.style.outline = "none";
+function setSelected(element) {
+  if (selected) {
+    selected.style.outline = "none";
   }
-  selectedElement = el;
-  selectedElement.style.outline = "2px solid yellow";
+
+  selected = element;
+
+  if (selected) {
+    selected.style.outline = "2px solid yellow";
+  }
 }
 
-export function clearSelection() {
-  if (selectedElement) {
-    selectedElement.style.outline = "none";
-  }
-  selectedElement = null;
+function getSelected() {
+  return selected;
 }
+
+function clearSelection() {
+  if (selected) {
+    selected.style.outline = "none";
+  }
+  selected = null;
+}
+
+export { setSelected, getSelected, clearSelection };
