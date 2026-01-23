@@ -231,8 +231,9 @@ main > div {
   background-color: red;
 }
 
-.triangle {
-  height: 50px;
+.line {
   width: 100px;
+  height: 15px;
   background-color: red;
+  position: absolute;
 }/*# sourceMappingURL=style.css.map */

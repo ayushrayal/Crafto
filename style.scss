@@ -218,8 +218,9 @@ main > div {
   border-radius: 50%;
   background-color: red;
 }
-.triangle {
-  height: 50px;
+.line {
   width: 100px;
+  height: 15px;
   background-color: red;
+  position: absolute;
 }
