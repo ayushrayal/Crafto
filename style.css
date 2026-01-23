@@ -262,4 +262,11 @@ main > div {
   font-weight: 400;
   max-width: 400px;
   line-height: 1.4;
+}
+
+.image {
+  position: absolute;
+  width: 200px;
+  height: auto;
+  cursor: move;
 }/*# sourceMappingURL=style.css.map */

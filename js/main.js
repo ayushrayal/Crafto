@@ -4,6 +4,7 @@ import "./resize.js";
 import "./color.js";
 import "./delete.js";
 import "./font.js";
+import "./image.js";
 
 import { createRectangle } from "./shapes/rectangle.js";
 import { createSquare } from "./shapes/square.js";
