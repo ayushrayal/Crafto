@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Crafto</title>
-    <link rel="icon" href="/assets/logo.png">
+    <link rel="icon" href="/assets/logo.png" />
 
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -12,7 +12,7 @@
     <main>
       <div id="left-container">
         <div id="logo">
-          <img src="/assets/logo.png" alt="">
+          <img src="/assets/logo.png" alt="" />
         </div>
         <div id="ShapeBox">
           <button id="Rectangle">Rectangle</button>
@@ -21,14 +21,23 @@
           <button id="Line">Line</button>
         </div>
         <div id="TextBox">
-          <button>Heading</button>
-          <button>Sub-Heading</button>
-          <button>ParaGraph</button>
+          <button id="Heading">Heading</button>
+          <button id="SubHeading">Sub-Heading</button>
+          <button id="Paragraph">ParaGraph</button>
         </div>
       </div>
       <div id="Center"></div>
       <div id="right">
         <div id="properties">
+          <div id="fontSize">
+            <label>Font Size</label>
+            <div class="inner">
+              <button id="fontPlus">+</button>
+              <input id="fontInput" type="number" value="16" />
+              <button id="fontMinus">-</button>
+            </div>
+          </div>
+
           <div id="hight">
             <label>Height</label>
             <div class="inner">
@@ -48,27 +57,30 @@
           <div id="color">
             <label>color</label>
             <div class="innerclr">
-              <input id="colorInput" type="color">
+              <input id="colorInput" type="color" />
             </div>
           </div>
         </div>
         <!-- //// -->
-         <button id="imageUpload">Image Upload</button>
-        <button id="Delete">
-          Delete
-        </button>
-        <button id="download">
-          download
-        </button>
+        <button id="imageUpload">Image Upload</button>
+        <button id="Delete">Delete</button>
+        <button id="download">download</button>
         <div id="links">
-          <a href="#"><img id="imglink" src="/assets/insta.webp" alt="">Instagram</a>
-          <a href="#"><img id="imglink" src="/assets/linkdin.png" alt="">Linkedin</a>
-          <a href="#"><img id="imglink" src="/assets/twi.webp" alt="">Twitter</a>
-          <a href="#"><img id="imglink" src="/assets/facebook.webp" alt="">Facebook</a>
+          <a href="#"
+            ><img id="imglink" src="/assets/insta.webp" alt="" />Instagram</a
+          >
+          <a href="#"
+            ><img id="imglink" src="/assets/linkdin.png" alt="" />Linkedin</a
+          >
+          <a href="#"
+            ><img id="imglink" src="/assets/twi.webp" alt="" />Twitter</a
+          >
+          <a href="#"
+            ><img id="imglink" src="/assets/facebook.webp" alt="" />Facebook</a
+          >
         </div>
       </div>
     </main>
     <script type="module" src="/js/main.js"></script>
-
   </body>
 </html>

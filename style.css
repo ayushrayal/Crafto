@@ -236,4 +236,30 @@ main > div {
   height: 15px;
   background-color: red;
   position: absolute;
+}
+
+.text {
+  position: absolute;
+  color: white;
+  cursor: text;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+}
+
+.heading {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.subheading {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.paragraph {
+  font-size: 16px;
+  font-weight: 400;
+  max-width: 400px;
+  line-height: 1.4;
 }/*# sourceMappingURL=style.css.map */

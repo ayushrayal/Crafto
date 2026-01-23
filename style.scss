@@ -224,3 +224,26 @@ main > div {
   background-color: red;
   position: absolute;
 }
+.text {
+  position: absolute;
+  color: white;
+  cursor: text;
+  user-select: text;
+}
+
+.heading {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.subheading {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.paragraph {
+  font-size: 16px;
+  font-weight: 400;
+  max-width: 400px;
+  line-height: 1.4;
+}

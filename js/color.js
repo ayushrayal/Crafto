@@ -6,5 +6,10 @@ colorInput.addEventListener("input", () => {
   const el = getSelected();
   if (!el) return;
 
-  el.style.backgroundColor = colorInput.value;
+  // text ke liye
+  if (el.classList.contains("text")) {
+    el.style.color = colorInput.value;
+  } else {
+    el.style.backgroundColor = colorInput.value;
+  }
 });
