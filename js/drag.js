@@ -1,37 +1,58 @@
+// drag.js — Drag elements on canvas with snap-to-grid support
+
 import { getSelected } from "./state.js";
 import { center } from "./canvas.js";
+import { snapToGrid } from "./grid.js";
+import { syncPropertyPanel } from "./state.js";
 
 function makeDraggable(element) {
-  let offsetX = 0;
-  let offsetY = 0;
-
   element.addEventListener("mousedown", (e) => {
+    // Don't drag when clicking resize handles
+    if (e.target.classList.contains("resize-handle")) return;
+    // Don't hijack text editing
+    if (e.target.isContentEditable && e.detail > 1) return;
+
     const el = getSelected();
-    if (!el) return;
+    if (!el || el !== element) return;
+
+    e.stopPropagation();
 
     const elementRect = el.getBoundingClientRect();
-    const canvasRect = center.getBoundingClientRect();
+    const canvasRect  = center.getBoundingClientRect();
 
-    // mouse ka gap element ke andar
-    offsetX = e.clientX - elementRect.left;
-    offsetY = e.clientY - elementRect.top;
+    const offsetX = e.clientX - elementRect.left;
+    const offsetY = e.clientY - elementRect.top;
+
+    let dragging = false;
 
     function onMouseMove(ev) {
-      // 🔥 CANVAS OFFSET SUBTRACT
-      const x = ev.clientX - canvasRect.left - offsetX;
-      const y = ev.clientY - canvasRect.top - offsetY;
+      dragging = true;
+      let x = ev.clientX - canvasRect.left - offsetX;
+      let y = ev.clientY - canvasRect.top  - offsetY;
+
+      x = snapToGrid(x);
+      y = snapToGrid(y);
+
+      // Clamp inside canvas
+      x = Math.max(0, Math.min(x, center.offsetWidth  - el.offsetWidth));
+      y = Math.max(0, Math.min(y, center.offsetHeight - el.offsetHeight));
 
       el.style.left = x + "px";
-      el.style.top = y + "px";
+      el.style.top  = y + "px";
+
+      syncPropertyPanel(el);
     }
 
     function onMouseUp() {
       document.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseup", onMouseUp);
+      document.removeEventListener("mouseup",   onMouseUp);
+      if (dragging) {
+        import("./undo.js").then(m => m.pushState());
+      }
     }
 
     document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
+    document.addEventListener("mouseup",   onMouseUp);
   });
 }
 

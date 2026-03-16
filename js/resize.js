@@ -1,70 +1,48 @@
+// resize.js — Property panel width/height/position inputs sync with canvas elements
+
 import { getSelected } from "./state.js";
+import { pushState } from "./undo.js";
+import { syncPropertyPanel } from "./state.js";
 
-// buttons
-const widthPlus = document.getElementById("widthplus");
-const widthMinus = document.getElementById("widthminus");
-const heightPlus = document.getElementById("heightplus");
-const heightMinus = document.getElementById("heightminus");
-const widthInput = document.querySelector("#widthInput");
-const heightInput = document.querySelector("#heightInput");
+const widthInput  = document.getElementById("widthInput");
+const heightInput = document.getElementById("heightInput");
+const posX        = document.getElementById("posX");
+const posY        = document.getElementById("posY");
 
-function hasElement() {
-  return getSelected();
-}
-// WIDTH +
-widthPlus.addEventListener("click", () => {
-  const el = getSelected();
-  if (!el) return;
-  widthInput.value = el.offsetWidth + 10;
-  el.style.width = el.offsetWidth + 10 + "px";
-});
-
-// WIDTH -
-widthMinus.addEventListener("click", () => {
-  const el = getSelected();
-  if (!el) return;
-  if (el.offsetWidth <= 5) return;
-  widthInput.value = el.offsetWidth - 10;
-  el.style.width = el.offsetWidth - 10 + "px";
-});
-
-// HEIGHT +
-heightPlus.addEventListener("click", () => {
-  const el = getSelected();
-  if (!el) return;
-  heightInput.value = el.offsetHeight + 10;
-  el.style.height = el.offsetHeight + 10 + "px";
-});
-
-// HEIGHT -
-heightMinus.addEventListener("click", () => {
-  const el = getSelected();
-  if (!el) return;
-  if (el.offsetHeight <= 5) return;
-heightInput.value = el.offsetHeight - 10;
-  el.style.height = el.offsetHeight - 10 + "px";
-});
-
+// ── Width ──────────────────────────────────────
 widthInput.addEventListener("input", () => {
-  const el = hasElement();
+  const el = getSelected();
   if (!el) return;
-
   const value = parseInt(widthInput.value);
-  if (value < 20) return;
-
+  if (value < 5) return;
   el.style.width = value + "px";
 });
+widthInput.addEventListener("change", () => pushState());
 
+// ── Height ────────────────────────────────────
 heightInput.addEventListener("input", () => {
-  const el = hasElement();
+  const el = getSelected();
   if (!el) return;
-
   const value = parseInt(heightInput.value);
-
-  // line minimum height
-  if (el.classList.contains("line") && value < 5) return;
-
-  if (value < 20) return;
-
+  if (value < 5) return;
+  // line minimum
+  if (el.classList.contains("line") && value < 2) return;
   el.style.height = value + "px";
 });
+heightInput.addEventListener("change", () => pushState());
+
+// ── Position X ────────────────────────────────
+posX.addEventListener("input", () => {
+  const el = getSelected();
+  if (!el) return;
+  el.style.left = parseInt(posX.value) + "px";
+});
+posX.addEventListener("change", () => pushState());
+
+// ── Position Y ────────────────────────────────
+posY.addEventListener("input", () => {
+  const el = getSelected();
+  if (!el) return;
+  el.style.top = parseInt(posY.value) + "px";
+});
+posY.addEventListener("change", () => pushState());

@@ -3,83 +3,323 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Crafto</title>
+    <title>Crafto — Design Editor</title>
+    <meta name="description" content="Crafto is a powerful browser-based design editor. Create stunning graphics with shapes, text, images and more." />
     <link rel="icon" href="/assets/logo.png" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main>
-      <div id="left-container">
+
+    <!-- ═══════════ TOP BAR ═══════════ -->
+    <header id="topbar">
+      <div id="topbar-left">
         <div id="logo">
-          <img src="/assets/logo.png" alt="" />
-        </div>
-        <div id="ShapeBox">
-          <button id="Rectangle">Rectangle</button>
-          <button id="Square">Square</button>
-          <button id="Circle">Circle</button>
-          <button id="Line">Line</button>
-        </div>
-        <div id="TextBox">
-          <button id="Heading">Heading</button>
-          <button id="SubHeading">Sub-Heading</button>
-          <button id="Paragraph">ParaGraph</button>
-          <button id="download">download</button>
+          <img src="/assets/logo.png" alt="Crafto Logo" />
+          <span>Crafto</span>
         </div>
       </div>
-      <div id="Center"></div>
-      <div id="right">
-        <div id="properties">
-          <div id="fontSize">
-            <label>Font Size</label>
-            <div class="inner">
-              <button id="fontPlus">+</button>
-              <input id="fontInput" type="number" value="16" />
-              <button id="fontMinus">-</button>
+
+      <div id="topbar-center">
+        <div class="toolbar-group">
+          <button id="undoBtn" class="tb-btn" title="Undo (Ctrl+Z)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10h10a5 5 0 0 1 0 10H7"/><polyline points="3 10 7 6 3 2 3 10"/></svg>
+          </button>
+          <button id="redoBtn" class="tb-btn" title="Redo (Ctrl+Y)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10H11a5 5 0 0 0 0 10h6"/><polyline points="21 10 17 6 21 2 21 10"/></svg>
+          </button>
+        </div>
+        <div class="toolbar-sep"></div>
+        <div class="toolbar-group">
+          <button id="gridToggle" class="tb-btn" title="Toggle Grid (G)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          </button>
+          <button id="snapToggle" class="tb-btn" title="Snap to Grid">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+          </button>
+        </div>
+        <div class="toolbar-sep"></div>
+        <div class="toolbar-group" id="align-toolbar">
+          <button class="tb-btn align-btn" data-align="left" title="Align Left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="15" y2="6"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+          </button>
+          <button class="tb-btn align-btn" data-align="centerH" title="Center Horizontally">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="3" x2="12" y2="21"/><line x1="6" y1="8" x2="18" y2="8"/><line x1="4" y1="14" x2="20" y2="14"/></svg>
+          </button>
+          <button class="tb-btn align-btn" data-align="right" title="Align Right">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="21" y1="12" x2="3" y2="12"/><line x1="21" y1="6" x2="9" y2="6"/><line x1="21" y1="18" x2="6" y2="18"/></svg>
+          </button>
+          <button class="tb-btn align-btn" data-align="top" title="Align Top">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="3" x2="12" y2="21"/><line x1="6" y1="3" x2="6" y2="15"/><line x1="18" y1="3" x2="18" y2="12"/></svg>
+          </button>
+          <button class="tb-btn align-btn" data-align="middleV" title="Center Vertically">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="8" y1="6" x2="8" y2="18"/><line x1="14" y1="4" x2="14" y2="20"/></svg>
+          </button>
+          <button class="tb-btn align-btn" data-align="bottom" title="Align Bottom">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="21" x2="12" y2="3"/><line x1="6" y1="21" x2="6" y2="9"/><line x1="18" y1="21" x2="18" y2="12"/></svg>
+          </button>
+        </div>
+        <div class="toolbar-sep"></div>
+        <div class="toolbar-group">
+          <button id="bgBtn" class="tb-btn" title="Background">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="topbar-right">
+        <div class="toolbar-group">
+          <span id="zoom-label">100%</span>
+          <button id="zoomOut" class="tb-btn" title="Zoom Out">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </button>
+          <button id="zoomIn" class="tb-btn" title="Zoom In">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </button>
+        </div>
+        <div class="toolbar-sep"></div>
+        <div class="export-wrap">
+          <button id="exportBtn" class="export-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export
+          </button>
+          <div id="exportDropdown" class="dropdown hidden">
+            <button class="drop-item" id="exportPNG">PNG Image</button>
+            <button class="drop-item" id="exportJPEG">JPEG Image</button>
+            <button class="drop-item" id="exportClipboard">Copy to Clipboard</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══════════ MAIN LAYOUT ═══════════ -->
+    <main id="app">
+
+      <!-- LEFT SIDEBAR -->
+      <aside id="left-sidebar">
+
+        <div class="sidebar-section">
+          <p class="sidebar-label">Shapes</p>
+          <div class="tool-grid">
+            <button id="Rectangle" class="tool-btn" title="Rectangle">
+              <svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="5" width="20" height="14" rx="1"/></svg>
+              <span>Rect</span>
+            </button>
+            <button id="Square" class="tool-btn" title="Square">
+              <svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="1"/></svg>
+              <span>Square</span>
+            </button>
+            <button id="Circle" class="tool-btn" title="Circle">
+              <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9"/></svg>
+              <span>Circle</span>
+            </button>
+            <button id="Triangle" class="tool-btn" title="Triangle">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,3 22,21 2,21"/></svg>
+              <span>Triangle</span>
+            </button>
+            <button id="Star" class="tool-btn" title="Star">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span>Star</span>
+            </button>
+            <button id="Line" class="tool-btn" title="Line">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="3" y1="12" x2="21" y2="12"/></svg>
+              <span>Line</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="sidebar-divider"></div>
+
+        <div class="sidebar-section">
+          <p class="sidebar-label">Text</p>
+          <div class="tool-list">
+            <button id="Heading" class="tool-text-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+              <span>Heading</span>
+            </button>
+            <button id="SubHeading" class="tool-text-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10"/></svg>
+              <span>Subheading</span>
+            </button>
+            <button id="Paragraph" class="tool-text-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h16M4 18h8"/></svg>
+              <span>Paragraph</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="sidebar-divider"></div>
+
+        <div class="sidebar-section">
+          <p class="sidebar-label">Media</p>
+          <div class="tool-list">
+            <button id="imageUpload" class="tool-text-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>Upload Image</span>
+            </button>
+            <input type="file" id="imageInput" accept="image/*" hidden />
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- CANVAS AREA -->
+      <div id="canvas-wrap">
+        <div id="Center"></div>
+      </div>
+
+      <!-- RIGHT PANEL -->
+      <aside id="right-panel">
+
+        <!-- PROPERTIES -->
+        <div class="panel-section" id="properties">
+          <p class="panel-title">Properties</p>
+
+          <div class="prop-row">
+            <label class="prop-label">X</label>
+            <input id="posX" type="number" class="prop-input" value="0" />
+            <label class="prop-label">Y</label>
+            <input id="posY" type="number" class="prop-input" value="0" />
+          </div>
+
+          <div class="prop-row">
+            <label class="prop-label">W</label>
+            <input id="widthInput" type="number" class="prop-input" value="100" />
+            <label class="prop-label">H</label>
+            <input id="heightInput" type="number" class="prop-input" value="100" />
+          </div>
+
+          <div class="prop-row">
+            <label class="prop-label full">Opacity</label>
+            <input id="opacityInput" type="range" min="0" max="100" value="100" class="prop-range" />
+            <span id="opacityVal" class="prop-val">100%</span>
+          </div>
+
+          <div class="prop-row col">
+            <label class="prop-label full">Fill</label>
+            <div class="color-row">
+              <input id="colorInput" type="color" value="#6c63ff" class="color-swatch" />
+              <input id="colorHex" type="text" class="hex-input" value="#6c63ff" maxlength="7" />
             </div>
           </div>
 
-          <div id="hight">
-            <label>Height</label>
-            <div class="inner">
-              <button id="heightplus">+</button>
-              <input id="heightInput" type="number" value="50" />
-              <button id="heightminus">-</button>
-            </div>
-          </div>
-          <div id="width">
-            <label>Width</label>
-            <div class="inner">
-              <button id="widthplus">+</button>
-              <input id="widthInput" type="number" value="50" />
-              <button id="widthminus">-</button>
-            </div>
-          </div>
-          <div id="color">
-            <label>color</label>
-            <div class="innerclr">
-              <input id="colorInput" type="color" />
+          <div class="prop-row col">
+            <label class="prop-label full">Stroke</label>
+            <div class="color-row">
+              <input id="strokeColorInput" type="color" value="#ffffff" class="color-swatch" />
+              <input id="strokeColorHex" type="text" class="hex-input" value="#ffffff" maxlength="7" />
+              <input id="strokeWidthInput" type="number" class="prop-input small" value="0" min="0" max="20" />
+              <label class="prop-label">px</label>
             </div>
           </div>
         </div>
-        <!-- //// -->
-        <div id="imgbox">
-          <button id="imageUpload">Image Upload</button>
-          <input type="file" id="imageInput" accept="image/*" hidden />
+
+        <div class="panel-divider"></div>
+
+        <!-- FONT PROPERTIES -->
+        <div class="panel-section" id="font-props">
+          <p class="panel-title">Typography</p>
+
+          <div class="prop-row">
+            <label class="prop-label full">Font Size</label>
+            <button id="fontMinus" class="icon-btn">−</button>
+            <input id="fontInput" type="number" class="prop-input" value="16" />
+            <button id="fontPlus" class="icon-btn">+</button>
+          </div>
+
+          <div class="prop-row">
+            <label class="prop-label full">Style</label>
+            <button id="boldBtn" class="style-btn" title="Bold" data-style="bold"><b>B</b></button>
+            <button id="italicBtn" class="style-btn" title="Italic" data-style="italic"><i>I</i></button>
+            <button id="underlineBtn" class="style-btn" title="Underline" data-style="underline"><u>U</u></button>
+          </div>
+
+          <div class="prop-row">
+            <label class="prop-label full">Align</label>
+            <button class="style-btn txt-align-btn" data-talign="left" title="Left">
+              <svg viewBox="0 0 14 14" fill="currentColor"><rect x="0" y="2" width="14" height="2"/><rect x="0" y="6" width="9" height="2"/><rect x="0" y="10" width="12" height="2"/></svg>
+            </button>
+            <button class="style-btn txt-align-btn" data-talign="center" title="Center">
+              <svg viewBox="0 0 14 14" fill="currentColor"><rect x="0" y="2" width="14" height="2"/><rect x="2.5" y="6" width="9" height="2"/><rect x="1" y="10" width="12" height="2"/></svg>
+            </button>
+            <button class="style-btn txt-align-btn" data-talign="right" title="Right">
+              <svg viewBox="0 0 14 14" fill="currentColor"><rect x="0" y="2" width="14" height="2"/><rect x="5" y="6" width="9" height="2"/><rect x="2" y="10" width="12" height="2"/></svg>
+            </button>
+          </div>
         </div>
-        <div id="layers">
-          <h3>Layers</h3>
+
+        <div class="panel-divider"></div>
+
+        <!-- LAYERS -->
+        <div class="panel-section" id="layers-section">
+          <div class="panel-title-row">
+            <p class="panel-title">Layers</p>
+            <div class="layer-actions">
+              <button id="layerUp" class="icon-btn" title="Bring Forward">↑</button>
+              <button id="layerDown" class="icon-btn" title="Send Backward">↓</button>
+              <button id="Delete" class="icon-btn danger" title="Delete (Del)">✕</button>
+            </div>
+          </div>
           <ul id="layerList"></ul>
-          <div class="layerBtns">
-            <button id="layerUp">Up</button>
-            <button id="layerDown">Down</button>
-          </div>
         </div>
 
-        <button id="Delete">Delete</button>
-       
-      </div>
+        <!-- HIDDEN for legacy compat -->
+        <input id="fontSizeHidden" type="number" value="16" hidden />
+      </aside>
+
     </main>
+
+    <!-- BACKGROUND EDITOR PANEL (floating) -->
+    <div id="bg-panel" class="floating-panel hidden">
+      <div class="fp-header">
+        <span>Canvas Background</span>
+        <button id="bgPanelClose" class="icon-btn">✕</button>
+      </div>
+      <div class="fp-tabs">
+        <button class="fp-tab active" data-tab="solid">Solid</button>
+        <button class="fp-tab" data-tab="gradient">Gradient</button>
+        <button class="fp-tab" data-tab="none">None</button>
+      </div>
+      <div class="fp-content">
+        <div class="fp-pane active" id="bg-solid-pane">
+          <input type="color" id="bgColorInput" value="#1a1a2e" class="color-swatch large" />
+          <input type="text" id="bgColorHex" class="hex-input" value="#1a1a2e" maxlength="7" />
+          <div class="preset-swatches">
+            <div class="swatch-preset" data-color="#1a1a2e"></div>
+            <div class="swatch-preset" data-color="#0f3460"></div>
+            <div class="swatch-preset" data-color="#16213e"></div>
+            <div class="swatch-preset" data-color="#ffffff"></div>
+            <div class="swatch-preset" data-color="#f0f0f0"></div>
+            <div class="swatch-preset" data-color="#000000"></div>
+          </div>
+        </div>
+        <div class="fp-pane" id="bg-gradient-pane">
+          <div class="grad-row">
+            <input type="color" id="gradColor1" value="#6c63ff" class="color-swatch" />
+            <input type="color" id="gradColor2" value="#3f37c9" class="color-swatch" />
+          </div>
+          <label class="prop-label full">Direction</label>
+          <select id="gradDirection" class="prop-select">
+            <option value="to right">→ Horizontal</option>
+            <option value="to bottom">↓ Vertical</option>
+            <option value="to bottom right">↘ Diagonal</option>
+            <option value="to bottom left">↙ Diagonal Alt</option>
+            <option value="135deg">⤢ 135°</option>
+          </select>
+          <button id="applyGradient" class="action-btn">Apply Gradient</button>
+        </div>
+        <div class="fp-pane" id="bg-none-pane">
+          <p class="pane-info">Canvas will be transparent (invisible background).</p>
+          <button id="applyNone" class="action-btn">Apply Transparent</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="toast hidden"></div>
+
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script type="module" src="/js/main.js"></script>
   </body>

@@ -1,25 +1,32 @@
+// text.js — Create editable text elements
 import { center } from "./canvas.js";
 import { makeSelectable } from "./select.js";
 import { makeDraggable } from "./drag.js";
+import { updateLayers } from "./layers.js";
+import { pushState } from "./undo.js";
+import { setSelected } from "./state.js";
 
 function createText(type) {
-  const text = document.createElement("div");
-  text.classList.add("text", type);
+  const el = document.createElement("div");
+  el.classList.add("canvas-el", "text", type);
+  el.contentEditable = "true";
 
-  text.contentEditable = true;
+  if (type === "heading")    el.innerText = "Heading";
+  if (type === "subheading") el.innerText = "Subheading";
+  if (type === "paragraph")  el.innerText = "Paragraph text goes here";
 
-  // default content
-  if (type === "heading") text.innerText = "Heading";
-  if (type === "subheading") text.innerText = "Subheading";
-  if (type === "paragraph") text.innerText = "Paragraph text";
+  el.style.left = Math.max(20, center.offsetWidth  / 2 - 70) + "px";
+  el.style.top  = Math.max(20, center.offsetHeight / 2 - 20) + "px";
 
-  text.style.left = "100px";
-  text.style.top = "100px";
+  // Prevent drag while editing
+  el.addEventListener("dblclick", () => el.focus());
 
-  makeSelectable(text);
-  makeDraggable(text);
-
-  center.appendChild(text);
+  makeSelectable(el);
+  makeDraggable(el);
+  center.appendChild(el);
+  setSelected(el);
+  updateLayers();
+  pushState();
 }
 
 export { createText };
